@@ -40,7 +40,7 @@ describe('Encode Objects', () => {
 
     const encode = e.compose(
       e.object<typeof toEncode>().rename('b', 'new_b').encoder,
-      e.toJSON(),
+      e.json(),
     );
     expect(encode(toEncode)).toEqual(`{"a":1,"new_b":"2","c":true}`);
   });
@@ -51,7 +51,7 @@ describe('Encode Objects', () => {
       b: { c: '2' },
     };
 
-    const encode = e.object<typeof toEncode>().map('b', e.toJSON()).encoder;
+    const encode = e.object<typeof toEncode>().map('b', e.json()).encoder;
     expect(encode(toEncode)).toEqual({ a: 1, b: `{"c":"2"}` });
   });
 
@@ -61,7 +61,7 @@ describe('Encode Objects', () => {
       items: [{ a: 1 }, { a: 2 }] as Item[],
     };
 
-    const itemEncoder = e.object<Item>().map('a', e.toJSON()).encoder;
+    const itemEncoder = e.object<Item>().map('a', e.json()).encoder;
     const encode = e
       .object<typeof toEncode>()
       .map('items', e.each(itemEncoder)).encoder;

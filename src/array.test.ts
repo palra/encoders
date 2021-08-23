@@ -11,8 +11,8 @@ describe('Array encoder', () => {
   });
 
   it('should have no effect on empty arrays', () => {
-    const array: number[] = [];
-    const encoder = e.each(e.toJSON<number>());
+    const array: any[] = [];
+    const encoder = e.each(e.json());
 
     expect(encoder(array)).toEqual([]);
   });

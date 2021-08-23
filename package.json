@@ -1,15 +1,15 @@
 {
   "name": "encoders",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Transform data in a functional fashion, inspired by npm:decoders",
   "main": "dist/index.js",
   "repository": "https://github.com/palra/encoders",
   "author": "Loïc Payol <contact@loicpayol.fr>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && tsc -p ./tsconfig.build.json",
     "test": "jest",
-    "prepublish": "tsc"
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",

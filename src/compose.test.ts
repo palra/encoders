@@ -9,7 +9,7 @@ describe('Compose', () => {
 
     const encode = e.compose(
       e.object<typeof json>().rename('a', 'new_a').encoder,
-      e.toJSON(),
+      e.json(),
     );
 
     expect(encode(json)).toEqual(`{"new_a":1,"b":"2"}`);
@@ -21,7 +21,7 @@ describe('Compose', () => {
       b: '2',
     };
 
-    const encode = e.compose(e.toJSON());
+    const encode = e.compose(e.json());
 
     expect(encode(json)).toEqual(JSON.stringify(json));
   });

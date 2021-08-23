@@ -1,10 +1,10 @@
 import { Encoder } from '.';
 
-type JSONOpts = {
+export type JSONOpts = {
   pretty?: number | boolean;
 };
 
-export function toJSON<T>(
+export function json<T>(
   { pretty }: JSONOpts = { pretty: false },
 ): Encoder<T, string> {
   return (val) => {
