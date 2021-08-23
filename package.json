@@ -1,0 +1,31 @@
+{
+  "name": "encoders",
+  "version": "0.1.0",
+  "description": "Transform data in a functional fashion, inspired by npm:decoders",
+  "main": "dist/index.js",
+  "repository": "https://github.com/palra/encoders",
+  "author": "Loïc Payol <contact@loicpayol.fr>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prepublish": "tsc"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "jest": "^27.0.6",
+    "nyc": "^15.1.0",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  }
+}
