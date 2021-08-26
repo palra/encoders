@@ -68,4 +68,22 @@ describe('Encode Objects', () => {
 
     expect(encode(toEncode)).toEqual({ items: [{ a: '1' }, { a: '2' }] });
   });
+
+  it('should transform keys to snake_case', () => {
+    const toEncode = {
+      encodeTest: true,
+      no: 'change',
+      shouldTransformAllKeys: 'please',
+    };
+
+    const encoder = e
+      .object<typeof toEncode>()
+      .transformKeys('snake_case').encoder;
+
+    expect(encoder(toEncode)).toEqual({
+      encode_test: true,
+      no: 'change',
+      should_transform_all_keys: 'please',
+    });
+  });
 });

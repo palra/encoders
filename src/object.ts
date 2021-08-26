@@ -1,5 +1,11 @@
 import { Encoder, noop } from '.';
 import { compose } from './compose';
+import { caseTransform, StringTransformer } from './string';
+import {
+  SnakeCasedProperties,
+  KebabCasedProperties,
+  CamelCasedProperties,
+} from 'type-fest';
 
 type Rename<T, K extends keyof T, N extends string> = Pick<
   T,
@@ -45,7 +51,6 @@ export function map<T extends { [key: string]: any }, K extends keyof T, U>(
     return newValue;
   };
 }
-
 interface ObjectEncoderBuilder<T extends { [key in string]: any }, U> {
   rename<Old extends keyof U, New extends string>(
     oldKey: Old,
@@ -55,12 +60,25 @@ interface ObjectEncoderBuilder<T extends { [key in string]: any }, U> {
     key: Key,
     encoder: Encoder<U[Key], NewVal>,
   ): ObjectEncoderBuilder<T, ChangeType<U, Key, NewVal>>;
+  transformKeys<KT extends StringTransformer>(
+    transformer: KT,
+  ): ObjectEncoderBuilder<
+    T,
+    KT extends 'snake_case'
+      ? SnakeCasedProperties<U>
+      : KT extends 'kebab-case'
+      ? KebabCasedProperties<U>
+      : KT extends 'camelCase'
+      ? CamelCasedProperties<U>
+      : { [key: string]: any }
+  >;
   encoder: Encoder<T, U>;
 }
 
-function makeObjectEncoderBuilder<T extends { [key: string]: any }, U>(
-  encoder: Encoder<T, U>,
-): ObjectEncoderBuilder<T, U> {
+function makeObjectEncoderBuilder<
+  T extends { [key: string]: any },
+  U extends { [key: string]: any },
+>(encoder: Encoder<T, U>): ObjectEncoderBuilder<T, U> {
   return {
     rename: (oldKey, newKey) => {
       return makeObjectEncoderBuilder(
@@ -70,6 +88,17 @@ function makeObjectEncoderBuilder<T extends { [key: string]: any }, U>(
     map: (mapKey, mapEncoder) => {
       return makeObjectEncoderBuilder(
         compose(encoder, map(mapKey, mapEncoder)),
+      );
+    },
+    transformKeys(transformer) {
+      return makeObjectEncoderBuilder(
+        compose(encoder, (obj) => {
+          const newObject: any = {};
+          Object.keys(obj).forEach((key) => {
+            newObject[caseTransform(transformer)(key)] = obj[key];
+          });
+          return newObject;
+        }),
       );
     },
     encoder,

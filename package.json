@@ -6,6 +6,10 @@
   "repository": "https://github.com/palra/encoders",
   "author": "Loïc Payol <contact@loicpayol.fr>",
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "rimraf dist && tsc -p ./tsconfig.build.json",
     "test": "jest",
@@ -13,6 +17,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.172",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
     "eslint": "^7.32.0",
@@ -26,6 +31,10 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
+    "type-fest": "^2.1.0",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }

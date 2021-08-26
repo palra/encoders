@@ -2,6 +2,9 @@ export * from './compose';
 export * from './object';
 export * from './json';
 export * from './array';
+export * from './mapping';
+export * from './string';
+export * from './helpers';
 
 export type Encoder<T, U> = (val: T) => U;
 export type EncoderInputType<T> = T extends Encoder<infer I, any> ? I : never;
