@@ -1,6 +1,6 @@
 {
   "name": "encoders",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Transform data in a functional fashion, inspired by npm:decoders",
   "main": "dist/index.js",
   "repository": "https://github.com/palra/encoders",
