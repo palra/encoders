@@ -1,4 +1,4 @@
-import { Encoder } from 'src';
+import { Encoder } from '.';
 import * as _ from 'lodash';
 
 export type BuiltInTransformers =
