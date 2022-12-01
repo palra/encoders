@@ -1,6 +1,6 @@
 {
   "name": "encoders",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Transform data in a functional fashion, inspired by npm:decoders",
   "main": "dist/index.js",
   "repository": "https://github.com/palra/encoders",
@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/jest": "^27.0.1",
     "@types/lodash": "^4.14.172",
+    "@types/node": "^18.11.10",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
     "eslint": "^7.32.0",
@@ -31,10 +32,10 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "typescript": "^4.3.5"
+    "typescript": "^4.9.3"
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "type-fest": "^2.1.0"
+    "type-fest": "^3.3.0"
   }
 }

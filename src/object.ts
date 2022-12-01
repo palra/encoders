@@ -105,6 +105,8 @@ function makeObjectEncoderBuilder<
   };
 }
 
-export function object<T>(): ObjectEncoderBuilder<T, T> {
+export function object<
+  T extends { [key: string]: any },
+>(): ObjectEncoderBuilder<T, T> {
   return makeObjectEncoderBuilder(noop());
 }
